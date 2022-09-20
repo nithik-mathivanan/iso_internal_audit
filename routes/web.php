@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('package-list','Superadmin\CompanyController@packagelist')->name('registerpackage');
 Route::post('register','UserController@registerstore')->name('registerstore');
 
+// User Interface
+Route::get('log-interface', "UserController@logInterface")->name('log_interface');
 
 Route::group(['middleware' => ['auth', 'role:superadmin'],'prefix' => 'superadmin'], function () {
 Route::get('/', function () {
