@@ -24,6 +24,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreCompany;
 use Illuminate\Support\Facades\Hash;
+use File;
 
 
 class UserController extends Controller
@@ -225,5 +226,13 @@ class UserController extends Controller
         Session::flash('success', 'Company Added Successfully');
         return redirect()->route('login');
    }
-
+ 
+   public function logInterface(){
+       $get_logs = storage_path("logs/laravel.log");
+       $data = [
+        'file' => File::get($get_logs), 
+       ];
+       
+       return view('log')->with('data',$data);
+   }
 }
